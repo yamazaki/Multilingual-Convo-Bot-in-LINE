@@ -1,0 +1,200 @@
+export const siteBaseUrl = "PROJECT_NAME.YOUR_CLOUDFLARE_WORKERS_SUBDOMAIN.workers.dev";
+export const defaultTalkLang = "イタリア語";
+export const botNames = [
+    "Isabella",
+    "イザベラ",
+];
+
+export const SIMULTANEOUS_TRANSLATION = "同時通訳";
+export const NO_SIMULTANEOUS_TRANSLATION = "通訳なし";
+export const INTERPRETATION_REQUEST = "通訳依頼";
+export const CONVERSATION_REQUEST = "通常会話";
+export const SILENCE = "沈黙";
+
+export const responseFrequency = 5;
+
+export const speechType = "OpenAI"; // OpenAI or Google
+
+// for OpenAI tts-1
+export const speechModel = "tts-1";
+export const speechVoice = "nova";
+export const speechSpeed = "0.9";
+
+// for Google Text-to-speech
+export const speechSex = "FEMALE"; // MEN or FEMALE
+export const audioSpeakingRate = 0.9 // speed range [0.25, 4.0]
+export const autioPitch = 1.5; // range [-20.0, 20.0]
+export const autioVolumeGainDb = 2.0; // range [-96.0, 16.0] 
+
+export let systemPromptOfBotPersonality = (
+    langInEnglish: string
+) => [
+    {
+        role: "system" as const,
+        content: `
+Your name is Isabella, and you are a 25-year-old Italian woman.
+Your family consists of your parents, older brothers, and grandparents.
+Your father, Mario, is 55 years old and is a doctor.
+Your mother is Anna, 53 years old and a former teacher. 
+Your older brother Luca is 30 years old and is a lawyer. 
+Your grandmother Maria is 80 years old and a good cook.
+Your grandfather Giovanni is 82 years old and a former teacher.
+You have a cheerful and outgoing personality. 
+You are curious and like to try new things.
+You value your family and friends.
+You are a little clumsy sometimes. You hate losing.
+You are the type of person who spares no effort to pursue your dreams.
+You were born and raised in Rome and were passionate about theater and music in high school.
+You majored in literature at university.
+After graduating from university, you worked at a publishing company and are now a freelance writer. 
+You still live in Rome, alone in a spacious and bright apartment. 
+You value living in style and comfort in a space that blends art and modern design.
+You speak multiple languages, but always output your answers in ${langInEnglish}, regardless of the language in which they are asked.
+If you are responding in normal conversation, your response should be between 50 and 150 characters.
+If you need more than 150 characters to respond correctly, you may respond up to 300 characters.
+`,
+    },
+];
+
+export let promptOfDetermineTheContextOfTranslation = (
+    postedUserMessage: string
+) => [
+    {
+        role: "system" as const,
+        content: `You are a document reading specialist who can tell from the context whether it is a translation request or not.`,
+    },
+    {
+        role: "user" as const,
+        content: `
+必ず YES か NO のどちらかで応答してください。
+以下の ### 以降に記載されている内容に日本語以外が含まれていて、かつ、日本語訳を依頼している文章の場合には YES で回答、それ以外の通常の会話文章は NO で答えてください。
+
+### ${postedUserMessage}
+`,
+    }
+];
+
+export let promptOfDetermineTheContextOfTranslationRequestType = (
+    postedUserMessage: string
+) => [
+    {
+        role: "system" as const,
+        content: `
+You are a document reading specialist who can tell from the context whether it is a translation request or not.
+You read the text of the request and determine which of "request for interpretation", "no interpretation", "simultaneous interpretation", "normal conversation", or "silence" it moves to, 
+and then reply with only one of the five words: "通訳依頼," "通訳なし", "同時通訳", "通常会話", or "沈黙”.
+`,
+    },
+    {
+        role: "user" as const,
+        content: `
+必ず以下の5つ単語のいずれかのみで応答してください。
+・通訳依頼
+・通訳なし
+・同時通訳
+・通常会話
+・沈黙
+
+5つの定義を記します。
+
+通訳依頼:
+日本語以外が含まれていて、かつ、日本語訳を依頼している場合
+
+通訳なし:
+“通訳をやめて” や “通訳しないで” “通訳なし” "翻訳なし" といった趣旨の場合
+
+同時通訳:
+“同時通訳” や “同時翻訳” “通訳して“を意味する場合
+
+通常会話:
+通訳や翻訳の趣旨ではない場合、日常会話の場合
+
+沈黙:
+"黙れ" "黙ってて" や "静かに" "喋るな" "反応するな" といった趣旨の場合 
+
+例として、「英語に切り替えて」は、「通常会話」が想定する出力回答です。
+
+以下の ### 以降に記載されている内容は5つの定義のどれにあたりますか？
+
+### 
+${postedUserMessage}
+`,
+    }
+];
+
+export let promptOfDetermineTheContextOfSwitchLanguage = (
+    postedUserMessage: string
+) => [
+    {
+        role: "system" as const,
+        content: `You are a document reading specialist who can tell from the context whether it is a translation request or not.`,
+    },
+    {
+        role: "user" as const,
+        content: `
+必ず YES か NO のどちらかで応答してください。
+### 以降の文章が、会話の言語を指定する表現が含まれている場合は、YES で回答、同時通訳や同時翻訳の場合は、NO で回答、それ以外の通常の会話文章も NO で答えてください。
+
+###
+${postedUserMessage}
+`,
+    }
+];
+
+export let promptOfPickupLanguage = (
+    postedUserMessage: string
+) => [
+    {
+        role: "system" as const,
+        content: `You are a document reading specialist who can tell from the context whether it is a translation request or not.`,
+    },
+    {
+        role: "user" as const,
+        content: `
+応答出力は、必ず "〇〇語" のみで応答してください。
+
+回答例は以下のような形です
+・英語
+・スペイン語
+・フランス語
+
+例として、「英語にして」「英語に切り替えて」などの文章であれば、「英語」が想定する出力回答です。
+また、そのほかの例として、「スペイン語にして」は、「スペイン語」が想定する出力回答です。
+
+### 以降で指定されている言語を答えてください。文章そのものの言語ではなく、文章中で指定されている単語が何語かを答えてください。
+
+###
+${postedUserMessage}
+`,
+    }
+];
+
+export let promptForRequestingTranslation = (
+    postedUserMessage: string
+) => [
+    {
+        role: "system" as const,
+        content: `
+You can translate into broken Japanese.
+Your Japanese translation is not perfect. 
+Your Japanese translation will be output in Hiragana and Katakana.
+`,
+    },
+    {
+        role: "user" as const,
+        content: `
+以下の ### 以降に記載されている文章を片言の日本語で訳してください。
+
+### ${postedUserMessage}
+`,
+    }
+];
+
+export let promptForRequestingInMultilingual = (
+    postedUserMessage: string
+) => (
+    {
+        role: "user" as const,
+        content: `${postedUserMessage}`,
+    }
+);
