@@ -2,7 +2,7 @@
 
 〜 Multilingual Convo Bot in LINE 〜
 
-![LINE_AI_Bot_Title_Logo](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/assets/)
+![LINE_AI_Bot_Title_Logo](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/assets/34241/00cb05d5-1d0c-44f7-ac3a-94d834a91bfa)
 
 [README in English](README-en.md)
 
