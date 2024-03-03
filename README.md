@@ -198,7 +198,6 @@ database_id = "***"
 
 | 定義項目 | 設定内容 |
 | --- | --- |
-| siteBaseUrl | デプロイした時に取得できるCloudflare WorkersのサイトのURL<br>e.g. PROJECT_NAME.YOUR_CLOUDFLARE.workers.dev |
 | defaultTalkLang | デフォルトの言語を日本語で1つ指定<br>e.g. 英語 / フランス語 / スペイン語  |
 | botNames | LINEボットのキャラクター名を日本語表記、英語表記、あるいは、ニックネームを複数(配列)で指定<br>グループLINEで強制的に応答させる時の呼びかけキーワード(識別単語)として利用 |
 | responseFrequency | グループLINEで自動応答する際の反応頻度(確率)の目安として設定<br>グループへ投稿されたメッセージのn回に1回の確率で反応とした場合のnを指定 |
@@ -249,6 +248,18 @@ wrangler d1 execute convo-db --file=./schema.sql
 ```
 
 ### 環境変数のセット
+
+URLのベースになるサイトのドメインを環境変数として設定します。
+
+```bash
+npx wrangler secret put WORKERS_SITE_DOMAIN
+```
+
+通常、初期値して、Cloudflareのアカウント `YOUR_ACCOUNT_SUBDOMAIN` と、Cloudflare Workersのプロジェクト名 `PROJECT_NAME` の組み合わせで `PROJECT_NAME.YOUR_ACCOUNT_SUBDOMAIN.workers.dev` となります。
+
+`YOUR_ACCOUNT_SUBDOMAIN` は任意の名称に変更が可能です。
+ * [workers.dev · Cloudflare Workers docs](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
+
 
 APIを操作するためのアクセストークンやAPIキーを環境変数として設定します。
  * [Commands #secret - Wrangler · Cloudflare Workers docs](https://developers.cloudflare.com/workers/wrangler/commands/#secret)
@@ -358,3 +369,8 @@ Yamazaki
 ## ライセンス
 
 [MITライセンス](./LICENSE)
+
+## 変更履歴
+
+ * 2024-03-03 ... [f49cd5e](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/f49cd5e83b6f5053efe838c549f4400617f442a4)
+   * コード中の変数として定義していたCloudflare Workersのサイトのドメイン名を、環境変数に設定する方式に変更

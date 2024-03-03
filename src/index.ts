@@ -9,7 +9,6 @@ import { getUnixTimeInSeconds } from './utils';
 import { getLangCode } from './lang-code';
 import { getLangInEnglish } from './lang-in-en';
 import { 
-    siteBaseUrl,
     defaultTalkLang,
     botNames,
     SIMULTANEOUS_TRANSLATION,
@@ -25,6 +24,7 @@ type Bindings = {
     DB: D1Database;
     BUCKET: R2Bucket;
     R2_SPEECH_KV: KVNamespace;
+    WORKERS_SITE_DOMAIN: string;
     CHANNEL_ACCESS_TOKEN: string;
     OPENAI_API_KEY: string;
     GCP_SERVICE_ACCOUNT_AUTH_KEY: string;
@@ -157,7 +157,7 @@ async function replyGeneratedMessage(
             console.log(generatedMessage);
 
             const [key, duration] = await generateSpeech(env, generatedMessage, talkLang);
-            const autioUrl = `https://${siteBaseUrl}/speech/` + key
+            const autioUrl = `https://${env.WORKERS_SITE_DOMAIN}/speech/` + key
             
             const lineClient = new Line(env.CHANNEL_ACCESS_TOKEN);
             lineClient.pushTextMessage(generatedMessage);

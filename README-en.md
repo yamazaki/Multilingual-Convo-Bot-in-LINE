@@ -197,7 +197,6 @@ This is an explanation table of each definition item.
 
 | Definition items | Setting details |
 | --- | --- |
-| siteBaseUrl | URL of the Cloudflare Workers site that can be obtained when deploying<br>e.g. PROJECT_NAME.YOUR_CLOUDFLARE.workers.dev |
 | defaultTalkLang | Specify one default language in Japanese<br>e.g. 英語 / フランス語 / スペイン語  |
 | botNames | Specify the character name of the LINE bot in Japanese, English, or multiple nicknames (array)<br>Use as a calling keyword (identification word) when forcing a response on group LINE |
 | responseFrequency | Set as a guideline for reaction frequency (probability) when automatically responding on group LINE |
@@ -248,6 +247,18 @@ wrangler d1 execute convo-db --file=./schema.sql
 ```
 
 ### Setting environment variables
+
+Set the domain of the site that is the base of the URL as an environment variable.
+
+```bash
+npx wrangler secret put WORKERS_SITE_DOMAIN
+```
+
+Usually, the initial value is `PROJECT_NAME.YOUR_ACCOUNT_SUBDOMAIN.workers.dev` which is a combination of Cloudflare account `YOUR_ACCOUNT_SUBDOMAIN` and Cloudflare Workers project name `PROJECT_NAME`.
+
+`YOUR_ACCOUNT_SUBDOMAIN` can be changed to any name.
+ * [workers.dev · Cloudflare Workers docs](https://developers.cloudflare.com/workers/configuration/routing/workers-dev/)
+
 
 Set the access token and API key for operating the API as environment variables.
  * [Commands #secret - Wrangler · Cloudflare Workers docs](https://developers.cloudflare.com/workers/wrangler/commands/#secret)
