@@ -24,6 +24,11 @@ Typical AI bots respond in Japanese to Japanese posts and in English to English 
 
 This means that even if the user continues to speak to them in Japanese, the AI ​​bot will continue to respond in English or French.
 
+＊ The image below is an example of the Italian language specified in the sample prompt.
+<p align="center">
+<img src="https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/assets/34241/a6a7299f-be4a-40a7-8d03-bbd88d1934d7" width="500">
+</p>
+
 In addition, when communicating on LINE, responses will be supplemented with the conversation in the specified language, along with the audio of the conversation and translation of broken japanese.
 
 You can use it to strengthen your listening skills by listening to the audio, and to practice speaking by imitating the pronunciation of the audio (shadowing). Even if you are in the middle of learning the specified language and are unfamiliar with it, you can use it while looking at the Japanese translation that is included. You can have smooth conversations.
