@@ -372,5 +372,5 @@ Yamazaki
 
 ## 変更履歴
 
- * 2024-03-03 ... [f49cd5e](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/f49cd5e83b6f5053efe838c549f4400617f442a4)
+ * 2024-03-03 ... [4132794](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/4132794e3781c1df1f7f7334775158bad0251cb2)
    * コード中の変数として定義していたCloudflare Workersのサイトのドメイン名を、環境変数に設定する方式に変更

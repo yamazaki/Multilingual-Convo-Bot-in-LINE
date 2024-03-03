@@ -372,3 +372,8 @@ Please feel free to contact me via DM from X(Twitter).
 ## License
 
 [The MIT License](./LICENSE)
+
+## Change Log
+
+ * 2024-03-03 ... [4132794](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/4132794e3781c1df1f7f7334775158bad0251cb2)
+   * The domain name of the Cloudflare Workers site, which was defined as a variable in the code, has been changed to be set as an environment variable.
