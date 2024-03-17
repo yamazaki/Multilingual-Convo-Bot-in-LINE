@@ -380,5 +380,7 @@ Please feel free to contact me via DM from X(Twitter).
 
 ## Change Log
 
+ * 2024-03-17 ... [95b8667](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/95b86674baaa7a035435aa2d371aa5316df63410)
+   * When using Google Text-to-Speech for audio, the instructions in the README and in the comments in the prompt file were incorrect and have been corrected.
  * 2024-03-03 ... [4132794](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/4132794e3781c1df1f7f7334775158bad0251cb2)
    * The domain name of the Cloudflare Workers site, which was defined as a variable in the code, has been changed to be set as an environment variable.
