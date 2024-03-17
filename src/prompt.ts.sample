@@ -20,7 +20,7 @@ export const speechVoice = "nova";
 export const speechSpeed = "0.9";
 
 // for Google Text-to-speech
-export const speechSex = "FEMALE"; // MEN or FEMALE
+export const speechSex = "FEMALE"; // MALE or FEMALE
 export const audioSpeakingRate = 0.9 // speed range [0.25, 4.0]
 export const autioPitch = 1.5; // range [-20.0, 20.0]
 export const autioVolumeGainDb = 2.0; // range [-96.0, 16.0] 

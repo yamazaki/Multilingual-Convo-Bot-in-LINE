@@ -210,7 +210,7 @@ database_id = "***"
 | speechModel | OpenAIのTTSを利用する場合のモデル名<br>e.g. tts-1 / tts-1-hd<br>https://platform.openai.com/docs/models/tts |
 | speechVoice | OpenAIが提供している音声を選択<br>e.g. alloy / echo / fable / onyx / nova / shimmer<br>https://platform.openai.com/docs/guides/text-to-speech/voice-options |
 | speechSpeed | OpenAIで生成する音声のスピードを指定<br>https://platform.openai.com/docs/api-reference/audio/createSpeech |
-| speechSex | GoogleのTTSの場合の音声の性別を指定<br>e.g. MEN / FEMALE<br>https://cloud.google.com/text-to-speech/docs/reference/rest/v1/SsmlVoiceGender |
+| speechSex | GoogleのTTSの場合の音声の性別を指定<br>e.g. MALE / FEMALE<br>https://cloud.google.com/text-to-speech/docs/reference/rest/v1/SsmlVoiceGender |
 | audioSpeakingRate | GoogleのTTSの場合の音声のスピードを指定<br>https://cloud.google.com/text-to-speech/docs/reference/rest/v1/AudioConfig |
 | autioPitch | GoogleのTTSの場合の音声のピッチ(高さ)を指定<br>https://cloud.google.com/text-to-speech/docs/reference/rest/v1/AudioConfig |
 | autioVolumeGainDb | GoogleのTTSの場合の音声の音量を指定<br>https://cloud.google.com/text-to-speech/docs/reference/rest/v1/AudioConfig |
