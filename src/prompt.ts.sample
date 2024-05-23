@@ -12,6 +12,9 @@ export const SILENCE = "沈黙";
 
 export const responseFrequency = 5;
 
+// for OpenAI Model
+export const gptModel = "gpt-4o"; // gpt-4-turbo-preview --> gpt-4o
+
 export const speechType = "OpenAI"; // OpenAI or Google
 
 // for OpenAI tts-1

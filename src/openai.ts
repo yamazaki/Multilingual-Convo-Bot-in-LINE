@@ -37,6 +37,7 @@ import {
     promptOfPickupLanguage,
     promptForRequestingTranslation,
     promptForRequestingInMultilingual,
+    gptModel,
     speechModel,
     speechVoice,
     speechSpeed,
@@ -121,7 +122,7 @@ export class OpenAIClient {
         
         messages.push(promptForRequestingInMultilingual(postedUserMessage));
         
-        return await this.generateMessage("gpt-4-turbo-preview", messages, 1.2);
+        return await this.generateMessage(gptModel, messages, 1.2);
     }
 
     public async isRequestingTranslation (
@@ -131,7 +132,7 @@ export class OpenAIClient {
             postedUserMessage
         );
 
-        const isRequested = await this.generateMessage("gpt-4-turbo-preview", messages, 0.2);
+        const isRequested = await this.generateMessage(gptModel, messages, 0.2);
 
         if (isRequested == "YES") {
             return true;
@@ -147,7 +148,7 @@ export class OpenAIClient {
             postedUserMessage
         );
 
-        const requestType = await this.generateMessage("gpt-4-turbo-preview", messages, 0.2);
+        const requestType = await this.generateMessage(gptModel, messages, 0.2);
         return requestType !== undefined ? requestType : "";
 
     }
@@ -159,7 +160,7 @@ export class OpenAIClient {
             postedUserMessage
         );
 
-        const isRequested = await this.generateMessage("gpt-4-turbo-preview", messages, 0.2);
+        const isRequested = await this.generateMessage(gptModel, messages, 0.2);
         console.log("言語切替 : " + isRequested);
 
         if (isRequested == "YES") {
@@ -176,7 +177,7 @@ export class OpenAIClient {
             postedUserMessage
         );
 
-        return await this.generateMessage("gpt-4-turbo-preview", messages, 1.2);
+        return await this.generateMessage(gptModel, messages, 1.2);
     }
 
     public async generateMessageForPickupLang(
@@ -186,7 +187,7 @@ export class OpenAIClient {
             postedUserMessage
         );
 
-        return await this.generateMessage("gpt-4-turbo-preview", messages, 1.0);
+        return await this.generateMessage(gptModel, messages, 1.0);
     }
 
     public async generateSpeech(
