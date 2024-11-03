@@ -1,9 +1,11 @@
+export const fixedLang = false;
 export const defaultTalkLang = "イタリア語";
 export const botNames = [
     "Isabella",
     "イザベラ",
 ];
 
+export const constantTranslation = true;
 export const SIMULTANEOUS_TRANSLATION = "同時通訳";
 export const NO_SIMULTANEOUS_TRANSLATION = "通訳なし";
 export const INTERPRETATION_REQUEST = "通訳依頼";

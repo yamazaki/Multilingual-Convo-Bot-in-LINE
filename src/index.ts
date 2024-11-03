@@ -9,12 +9,15 @@ import { getUnixTimeInSeconds } from './utils';
 import { getLangCode } from './lang-code';
 import { getLangInEnglish } from './lang-in-en';
 import { 
+    fixedLang,
     defaultTalkLang,
     botNames,
+    constantTranslation,
     SIMULTANEOUS_TRANSLATION,
     NO_SIMULTANEOUS_TRANSLATION,
     INTERPRETATION_REQUEST,
     CONVERSATION_REQUEST,
+    SILENCE,
     responseFrequency,
     speechType
 } from './prompt';
@@ -129,16 +132,24 @@ async function replyGeneratedMessage(
     try {
         const openaiClient = new OpenAIClient(env.OPENAI_API_KEY);
 
-        if ( await openaiClient.isRequestingSwitchingLang(postedUserMessage) )
-            await setTalkLang(env, userId, groupId, sourceType, postedUserMessage);
+        if ( !fixedLang )
+            if ( await openaiClient.isRequestingSwitchingLang(postedUserMessage) )
+                await setTalkLang(env, userId, groupId, sourceType, postedUserMessage);
         
-        const requestType = await openaiClient.whichRequestType(postedUserMessage);
+        const originalRequestType = await openaiClient.whichRequestType(postedUserMessage);
+        console.log("originalRequestType : " + originalRequestType);
+
+        // constantTranslationがtrueで、かつNO_SIMULTANEOUS_TRANSLATIONの場合、SIMULTANEOUS_TRANSLATIONに置き換え
+        const requestType = (constantTranslation && originalRequestType === NO_SIMULTANEOUS_TRANSLATION)
+            ? SIMULTANEOUS_TRANSLATION
+            : originalRequestType;
+
         console.log("requestType : " + requestType);
 
         if ( requestType == SIMULTANEOUS_TRANSLATION || requestType == NO_SIMULTANEOUS_TRANSLATION )
             await setOutputStyle(env, userId, groupId, sourceType, requestType);
         
-        if ( !continueConversation ) {
+        if ( !continueConversation || requestType == SILENCE ) {
             if ( sourceType = "group" ){
                 await saveGroupMessageHistory(env, groupId, postedUserMessage);
             }
