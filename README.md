@@ -203,8 +203,10 @@ database_id = "***"
 
 | 定義項目 | 設定内容 |
 | --- | --- |
+| fixedLang | 設定言語を固定化するかどうかの設定(true : 固定化 ／ false : 非固定) |
 | defaultTalkLang | デフォルトの言語を日本語で1つ指定<br>e.g. 英語 / フランス語 / スペイン語  |
 | botNames | LINEボットのキャラクター名を日本語表記、英語表記、あるいは、ニックネームを複数(配列)で指定<br>グループLINEで強制的に応答させる時の呼びかけキーワード(識別単語)として利用 |
+| constantTranslation | 常時、同時通訳を出力するかどうかの設定(true : 常時同時通訳 ／ false : 指定に従う) |
 | responseFrequency | グループLINEで自動応答する際の反応頻度(確率)の目安として設定<br>グループへ投稿されたメッセージのn回に1回の確率で反応とした場合のnを指定 |
 | gptModel | OpenAI APIのモデルを指定<br>e.g. gpt-4o / gpt-4-turbo<br>https://platform.openai.com/docs/models |
 | speechType | 音声データを「OpenAI」「Google」どちらのText-to-Speech(TTS)で生成するかを指定<br>e.g. OpenAI / Google |
@@ -378,6 +380,8 @@ Yamazaki
 
 ## 変更履歴
 
+ * 2024-11-03 ... [00fcb35](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/00fcb35593beca412d0b29eb7237641e26b2b3be)
+   * 新しいオプション設定(言語固定と常時通訳)を追加
  * 2024-05-23 ... [8cff053](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/8cff053c8496c012413b5947f3a9c3e6bcd769c0)
    * GPT-4oに対応、併せて、モデルをハードコーディングからprompt.tsの定数で指定できる形に変更
  * 2024-03-17 ... [95b8667](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/95b86674baaa7a035435aa2d371aa5316df63410)

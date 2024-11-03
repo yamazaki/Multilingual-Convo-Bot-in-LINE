@@ -202,8 +202,10 @@ This is an explanation table of each definition item.
 
 | Definition items | Setting details |
 | --- | --- |
+| fixedLang | Setting whether to fix the setting language(true : fixed / false : Non-fixed) |
 | defaultTalkLang | Specify one default language in Japanese<br>e.g. 英語 / フランス語 / スペイン語  |
 | botNames | Specify the character name of the LINE bot in Japanese, English, or multiple nicknames (array)<br>Use as a calling keyword (identification word) when forcing a response on group LINE |
+| constantTranslation | Setting whether to always output simultaneous interpretation(true : Continuous simultaneous interpretation / false : follow instructions) |
 | responseFrequency | Set as a guideline for reaction frequency (probability) when automatically responding on group LINE |
 | gptModel | Specify the OpenAI API model<br>e.g. gpt-4o / gpt-4-turbo<br>https://platform.openai.com/docs/models |
 | speechType | Specifies the Text-to-Speech (TTS) API to use<br>e.g. OpenAI / Google |
@@ -381,6 +383,8 @@ Please feel free to contact me via DM from X(Twitter).
 
 ## Change Log
 
+ * 2024-11-03 ... [00fcb35](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/00fcb35593beca412d0b29eb7237641e26b2b3be)
+   * Added new option settings. Fixed language and constant interpretation.
  * 2024-05-23 ... [8cff053](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/8cff053c8496c012413b5947f3a9c3e6bcd769c0)
    * Compatible with GPT-4o, model specification changed from hard-coded to constant in prompt.ts.
  * 2024-03-17 ... [95b8667](https://github.com/yamazaki/Multilingual-Convo-Bot-in-LINE/commit/95b86674baaa7a035435aa2d371aa5316df63410)
